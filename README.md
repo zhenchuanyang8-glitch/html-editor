@@ -157,26 +157,26 @@ html-editor-extension/
 ├── manifest.json              # 扩展清单配置（MV3）
 ├── popup.html                 # 浏览器弹窗界面
 ├── popup.js                   # 弹窗逻辑（状态检测、启停控制）
-├── README.md                  # 本文件
+├── README.md                  # 项目说明文档
 ├── Logo.png                   # 项目 Logo
 ├── 安装界面.png               # 截图：chrome://extensions 加载扩展
 ├── 功能清单.png               # 截图：编辑器工具栏全貌
 ├── 启动入口1.png              # 截图：扩展图标位置
 ├── 启动入口2.png              # 截图：popup 弹窗面板
-├── content/
-│   ├── injector.js            # 内容脚本入口（核心调度）
+├── test.html                  # 功能测试页面（双击即可体验编辑器）
+├── content/                   # 内容脚本（核心逻辑）
+│   ├── injector.js            # 入口：注入工具栏 + 全局事件调度
 │   ├── styles/
-│   │   ├── editor.css         # 编辑器交互样式（选中态/手柄/Toast）
-│   │   ├── toolbar.css        # 浮动工具栏样式
+│   │   ├── editor.css         # 交互样式（选中态、手柄、Toast）
+│   │   ├── toolbar.css        # 浮动工具栏 UI
 │   │   └── table.css          # 表格编辑专属样式
 │   └── modules/
-│       ├── table-resizer.js   # 表格拖拽调整模块
-│       ├── shape-tool.js      # 形状绘制模块
-│       └── connector.js       # 连接线模块
+│       ├── table-resizer.js   # 表格拖拽调整
+│       ├── shape-tool.js      # 形状绘制
+│       └── connector.js       # 贝塞尔连接线
 ├── icons/
-│   └── icon.svg               # 扩展图标
-├── lib/                       # 第三方依赖库
-└── test.html                  # 测试页面
+│   └── icon.svg               # 扩展图标（SVG）
+└── lib/                       # 第三方依赖库
 ```
 
 ---
@@ -341,5 +341,5 @@ html-editor-extension/
 ---
 
 <p align="center">
-  <sub>Made with ❤️ by <a href="[你的GitHub主页链接]">你的名字</a></sub>
+  <sub>Made with ❤️ by <a href="https://github.com/zhenchuanyang8-glitch">老船</a></sub>
 </p>
