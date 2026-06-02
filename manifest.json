@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "HTML可视化编辑器",
+  "version": "1.0.0",
+  "description": "让非技术人员能够可视化编辑本地HTML文档，具备类似PPT的编辑体验",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["file:///*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon.svg",
+      "48": "icons/icon.svg",
+      "128": "icons/icon.svg"
+    }
+  },
+  "icons": {
+    "16": "icons/icon.svg",
+    "48": "icons/icon.svg",
+    "128": "icons/icon.svg"
+  },
+  "content_scripts": [
+    {
+      "matches": ["file:///*/*.html", "file:///*/*.htm"],
+      "js": ["content/injector.js"],
+      "css": ["content/styles/editor.css", "content/styles/toolbar.css", "content/styles/table.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["content/modules/*.js", "content/modules/*"],
+      "matches": ["file:///*", "<all_urls>"]
+    }
+  ]
+}

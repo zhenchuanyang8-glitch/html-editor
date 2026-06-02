@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML可视化编辑器</title>
+    <style>
+        :root {
+            --pp-bg: #ffffff;
+            --pp-border: #e5e7eb;
+            --pp-text: #1f2937;
+            --pp-text-secondary: #6b7280;
+            --pp-accent: #2563eb;
+            --pp-accent-light: #eff6ff;
+            --pp-success: #16a34a;
+            --pp-success-bg: #f0fdf4;
+            --pp-danger: #dc2626;
+            --pp-muted: #f9fafb;
+            --pp-radius: 2px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 340px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: var(--pp-bg);
+            color: var(--pp-text);
+            padding: 0;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--pp-border);
+            background: var(--pp-bg);
+        }
+
+        .header h1 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--pp-text);
+            margin-bottom: 2px;
+        }
+
+        .header p {
+            font-size: 11px;
+            color: var(--pp-text-secondary);
+        }
+
+        .content {
+            padding: 16px 20px;
+        }
+
+        .status-card {
+            background: var(--pp-muted);
+            border: 1px solid var(--pp-border);
+            border-radius: var(--pp-radius);
+            padding: 12px 14px;
+            margin-bottom: 14px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .status-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .status-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: var(--pp-radius);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        .status-icon.active {
+            background: var(--pp-success);
+            color: white;
+        }
+
+        .status-icon.inactive {
+            background: #d1d5db;
+            color: #9ca3af;
+        }
+
+        .status-text {
+            flex: 1;
+            color: var(--pp-text);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .btn {
+            padding: 9px 16px;
+            border: 1px solid transparent;
+            border-radius: var(--pp-radius);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--pp-accent);
+            color: white;
+            border-color: var(--pp-accent);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+        }
+
+        .btn-primary:disabled {
+            background: #d1d5db;
+            border-color: #d1d5db;
+            cursor: not-allowed;
+            color: #9ca3af;
+        }
+
+        .btn-secondary {
+            background: var(--pp-muted);
+            color: var(--pp-text);
+            border-color: var(--pp-border);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #f3f4f6;
+        }
+
+        .btn-secondary:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .features {
+            padding-top: 14px;
+            border-top: 1px solid var(--pp-border);
+        }
+
+        .features h3 {
+            font-size: 11px;
+            color: var(--pp-text-secondary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 12px;
+        }
+
+        .feature-item {
+            font-size: 12px;
+            color: var(--pp-text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .feature-item::before {
+            content: "";
+            width: 4px;
+            height: 4px;
+            background: var(--pp-accent);
+            border-radius: 1px;
+            flex-shrink: 0;
+        }
+
+        .footer {
+            padding: 10px 20px;
+            border-top: 1px solid var(--pp-border);
+            text-align: center;
+            font-size: 10px;
+            color: #9ca3af;
+        }
+
+        .not-supported {
+            text-align: center;
+            padding: 36px 20px;
+            color: var(--pp-danger);
+        }
+
+        .not-supported .icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: var(--pp-text-secondary);
+        }
+        .not-supported h3 { font-size: 14px; margin-bottom: 6px; }
+        .not-supported p { font-size: 12px; color: var(--pp-text-secondary); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>HTML可视化编辑器</h1>
+        <p>轻松编辑本地HTML文档</p>
+    </div>
+
+    <div class="content">
+        <div id="mainContent">
+            <div class="status-card">
+                <div class="status-item">
+                    <div class="status-icon" id="pageStatusIcon">?</div>
+                    <div class="status-text" id="pageStatusText">检测中...</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon" id="editorStatusIcon">?</div>
+                    <div class="status-text" id="editorStatusText">编辑器状态</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="toggleEditorBtn">
+                    <span id="toggleBtnText">启动编辑器</span>
+                </button>
+                <button class="btn btn-secondary" id="saveBtn" disabled>
+                    <span>保存文档</span>
+                </button>
+            </div>
+
+            <div class="features">
+                <h3>支持功能</h3>
+                <div class="feature-list">
+                    <div class="feature-item">文本格式</div>
+                    <div class="feature-item">表格编辑</div>
+                    <div class="feature-item">图片替换</div>
+                    <div class="feature-item">形状绘制</div>
+                    <div class="feature-item">连接线</div>
+                    <div class="feature-item">颜色调整</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="notSupported" class="not-supported" style="display: none;">
+            <div class="icon">!</div>
+            <h3>不支持此页面</h3>
+            <p>请在本地HTML文件上使用此插件</p>
+            <p style="font-size: 12px; color: #999; margin-top: 10px;">
+                提示：在文件管理器中双击HTML文件打开
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        HTML可视化编辑器 v1.0.0
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

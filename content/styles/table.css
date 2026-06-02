@@ -1,0 +1,311 @@
+/* content/styles/table.css - 表格编辑样式（白+蓝 简约线条风格） */
+
+/* ===== 表格拖拽调整大小（body 级别 fixed 定位）===== */
+.html-table-resizer {
+    position: fixed;
+    background: rgba(37, 99, 235, 0.25);
+    z-index: 99999;
+    transition: background 0.12s ease;
+    pointer-events: auto !important;
+}
+
+.html-table-resizer:hover,
+.html-table-resizer.active {
+    background: rgba(37, 99, 235, 0.55);
+}
+
+.html-table-resizer-col {
+    width: 12px;
+    cursor: col-resize !important;
+}
+
+.html-table-resizer-row {
+    height: 12px;
+    cursor: row-resize !important;
+}
+
+/* 确保表格单元格有正确的定位 */
+.html-table-resizable-initialized td {
+    position: relative !important;
+}
+
+/* ===== 表格编辑面板 ===== */
+.table-edit-panel {
+    position: fixed;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 3px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+    padding: 14px;
+    z-index: 10000;
+    min-width: 200px;
+    display: none;
+}
+
+.table-edit-panel.show {
+    display: block;
+    animation: fadeIn 0.15s ease-out;
+}
+
+.table-edit-panel h4 {
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    color: #334155;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.table-edit-panel .panel-section {
+    margin-bottom: 10px;
+}
+
+.table-edit-panel .panel-section:last-child {
+    margin-bottom: 0;
+}
+
+.table-edit-panel .section-label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.table-edit-panel .btn-group {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.table-edit-panel button {
+    padding: 5px 9px;
+    background: var(--tb-accent, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 2px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background 0.12s ease;
+}
+
+.table-edit-panel button:hover {
+    background: var(--tb-accent-hover, #1d4ed8);
+}
+
+.table-edit-panel button.danger {
+    background: #dc2626;
+}
+
+.table-edit-panel button.danger:hover {
+    background: #b91c1c;
+}
+
+/* ===== 表格颜色选择器 ===== */
+.table-color-picker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-color-picker label {
+    font-size: 12px;
+    color: #334155;
+}
+
+.table-color-picker input[type="color"] {
+    width: 30px;
+    height: 26px;
+    padding: 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* ===== 预设颜色 ===== */
+.color-presets {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+}
+
+.color-preset {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: border-color 0.1s ease;
+}
+
+.color-preset:hover {
+    border-color: #94a3b8;
+}
+
+.color-preset.active {
+    border-color: var(--tb-accent, #2563eb);
+    box-shadow: 0 0 0 1.5px #fff, 0 0 0 3px var(--tb-accent, #2563eb);
+}
+
+/* ===== 表格尺寸输入 ===== */
+.table-size-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-size-input input {
+    width: 56px;
+    padding: 4px 7px;
+    border: 1px solid #e2e8f0;
+    border-radius: 2px;
+    font-size: 12px;
+    outline: none;
+}
+
+.table-size-input input:focus {
+    border-color: var(--tb-accent, #2563eb);
+}
+
+.table-size-input span {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* ===== 拖拽预览线 ===== */
+.table-resize-guide {
+    position: fixed;
+    background: var(--tb-accent, #2563eb);
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.table-resize-guide.horizontal {
+    height: 1.5px;
+    left: 0;
+    right: 0;
+}
+
+.table-resize-guide.vertical {
+    width: 1.5px;
+    top: 0;
+    bottom: 0;
+}
+
+/* ===== 表格选择状态 ===== */
+.html-editable-table.cell-selected td,
+.html-editable-table.cell-selected th {
+    outline: none !important;
+}
+
+.html-editable-table.cell-selected td.selected,
+.html-editable-table.cell-selected th.selected {
+    outline: 2px solid var(--tb-accent, #2563eb) !important;
+    outline-offset: -1px !important;
+    background: #eff6ff !important;
+}
+
+.html-editable-table.row-selected tr.selected td,
+.html-editable-table.row-selected tr.selected th {
+    background: #eff6ff !important;
+}
+
+.html-editable-table.col-selected td.selected,
+.html-editable-table.col-selected th.selected {
+    background: #eff6ff !important;
+}
+
+/* ===== 表格边框调整手柄 ===== */
+.table-border-handle {
+    position: absolute;
+    background: var(--tb-accent, #2563eb);
+    border: 1.5px solid #fff;
+    z-index: 100;
+}
+
+.table-border-handle.corner {
+    width: 8px;
+    height: 8px;
+}
+
+.table-border-handle.edge-h {
+    width: 8px;
+    height: 5px;
+}
+
+.table-border-handle.edge-v {
+    width: 5px;
+    height: 8px;
+}
+
+/* ===== 动画 ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 表格右键菜单 ===== */
+.table-context-menu {
+    position: fixed;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 4px 0;
+    z-index: 10001;
+    min-width: 150px;
+    display: none;
+}
+
+.table-context-menu.show {
+    display: block;
+}
+
+.table-context-menu-item {
+    padding: 7px 14px;
+    font-size: 12px;
+    color: #334155;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.1s ease;
+}
+
+.table-context-menu-item:hover {
+    background: #f1f5f9;
+}
+
+.table-context-menu-item.danger {
+    color: #dc2626;
+}
+
+.table-context-menu-divider {
+    height: 1px;
+    background: #f1f5f9;
+    margin: 4px 0;
+}
+
+/* ===== 表格信息显示 ===== */
+.table-info {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 6px 14px;
+    border-radius: 2px;
+    font-size: 11px;
+    z-index: 9999;
+    display: none;
+}
+
+.table-info.show {
+    display: block;
+}
+
+.table-info span {
+    color: #60a5fa;
+    font-weight: 600;
+}

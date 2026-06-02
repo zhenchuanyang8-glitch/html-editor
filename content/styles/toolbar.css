@@ -1,0 +1,287 @@
+/* content/styles/toolbar.css - 工具栏样式（白+蓝 简约线条风格） */
+
+:root {
+    --tb-bg: #ffffff;
+    --tb-border: #e2e8f0;
+    --tb-text: #334155;
+    --tb-text-muted: #94a3b8;
+    --tb-accent: #2563eb;
+    --tb-accent-hover: #1d4ed8;
+    --tb-accent-light: rgba(37, 99, 235, 0.08);
+    --tb-hover: #f1f5f9;
+    --tb-danger: #dc2626;
+    --tb-danger-light: rgba(220, 38, 38, 0.08);
+    --tb-success: #16a34a;
+}
+
+.html-editor-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    background: var(--tb-bg);
+    border-bottom: 1px solid var(--tb-border);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    z-index: 9999;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.html-editor-toolbar::-webkit-scrollbar {
+    height: 3px;
+}
+
+.html-editor-toolbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.html-editor-toolbar::-webkit-scrollbar-thumb {
+    background: var(--tb-border);
+    border-radius: 0;
+}
+
+.toolbar-section {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 10px;
+    position: relative;
+}
+
+.toolbar-section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 8px;
+    width: 1px;
+    height: 28px;
+    background: var(--tb-border);
+}
+
+.toolbar-section--end {
+    margin-left: auto;
+}
+
+.toolbar-section--end::after {
+    display: none;
+}
+
+.section-title {
+    font-size: 11px;
+    color: var(--tb-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-right: 6px;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.toolbar-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--tb-border);
+    margin: 0 2px;
+}
+
+/* ===== 工具按钮 ===== */
+.tool-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    color: var(--tb-text);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    padding: 0 7px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1;
+}
+
+.tool-btn:hover {
+    background: var(--tb-hover);
+    border-color: var(--tb-border);
+}
+
+.tool-btn:active {
+    background: #e2e8f0;
+}
+
+.tool-btn:focus-visible {
+    outline: 2px solid var(--tb-accent);
+    outline-offset: -1px;
+}
+
+.tool-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.tool-btn:disabled:hover {
+    background: transparent;
+    border-color: transparent;
+}
+
+.tool-btn.active {
+    background: var(--tb-accent-light);
+    border-color: var(--tb-accent);
+    color: var(--tb-accent);
+}
+
+.tool-btn b,
+.tool-btn i,
+.tool-btn u,
+.tool-btn s {
+    font-style: normal;
+    text-decoration: none;
+}
+
+/* ===== 主要按钮 ===== */
+.tool-btn-primary {
+    background: var(--tb-accent);
+    border: 1px solid var(--tb-accent);
+    color: #fff;
+    font-weight: 500;
+    min-width: auto;
+    padding: 0 14px;
+}
+
+.tool-btn-primary:hover {
+    background: var(--tb-accent-hover);
+    border-color: var(--tb-accent-hover);
+}
+
+/* ===== 次要按钮 ===== */
+.tool-btn-secondary {
+    border: 1px solid var(--tb-border);
+}
+
+.tool-btn-secondary:hover {
+    background: var(--tb-hover);
+    border-color: #cbd5e1;
+}
+
+/* ===== 危险按钮 ===== */
+.tool-btn-danger {
+    color: var(--tb-danger);
+}
+
+.tool-btn-danger:hover {
+    background: var(--tb-danger-light);
+    border-color: #fecaca;
+}
+
+/* ===== 下拉选择框 ===== */
+.tool-select {
+    height: 28px;
+    padding: 0 22px 0 8px;
+    background: var(--tb-bg);
+    border: 1px solid var(--tb-border);
+    border-radius: 2px;
+    color: var(--tb-text);
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394a3b8'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    font-family: inherit;
+}
+
+.tool-select:hover {
+    border-color: #cbd5e1;
+}
+
+.tool-select:focus {
+    border-color: var(--tb-accent);
+    box-shadow: 0 0 0 2px var(--tb-accent-light);
+}
+
+.tool-select option {
+    background: #fff;
+    color: var(--tb-text);
+}
+
+/* ===== 颜色选择器 ===== */
+.tool-color {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: 1px solid var(--tb-border);
+    border-radius: 2px;
+    cursor: pointer;
+    background: none;
+    vertical-align: middle;
+}
+
+.tool-color::-webkit-color-swatch-wrapper {
+    padding: 2px;
+}
+
+.tool-color::-webkit-color-swatch {
+    border: none;
+    border-radius: 1px;
+}
+
+.tool-color:hover {
+    border-color: #cbd5e1;
+}
+
+.tool-color:focus {
+    outline: none;
+    border-color: var(--tb-accent);
+    box-shadow: 0 0 0 2px var(--tb-accent-light);
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+    .html-editor-toolbar {
+        padding: 0 8px;
+        height: 42px;
+    }
+
+    .section-title {
+        display: none;
+    }
+
+    .toolbar-section {
+        padding: 0 4px;
+        gap: 1px;
+    }
+
+    .tool-btn {
+        min-width: 28px;
+        height: 28px;
+        font-size: 11px;
+        padding: 0 5px;
+    }
+}
+
+/* ===== 工具提示 ===== */
+.tool-btn[title]:hover::before {
+    content: attr(title);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background: #1e293b;
+    color: #fff;
+    font-size: 11px;
+    white-space: nowrap;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 10000;
+    line-height: normal;
+}

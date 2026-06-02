@@ -1,0 +1,263 @@
+/* content/styles/editor.css - 编辑器主样式（白+蓝 简约线条风格） */
+
+/* ===== 全局编辑模式 ===== */
+.html-editor-mode {
+    position: relative;
+}
+
+/* ===== 可编辑元素 ===== */
+.html-editable {
+    position: relative;
+    transition: outline 0.15s ease;
+}
+
+.html-editable:hover {
+    outline: 1px solid #bfdbfe;
+    outline-offset: 2px;
+}
+
+.html-editable:focus {
+    outline: 2px solid var(--tb-accent, #2563eb);
+    outline-offset: 1px;
+}
+
+/* ===== 表格 ===== */
+.html-editable-table {
+    position: relative;
+    border-collapse: collapse;
+    transition: outline 0.15s ease;
+}
+
+.html-editable-table:hover {
+    outline: 1px dashed #93c5fd;
+    outline-offset: 2px;
+}
+
+.html-editable-table td,
+.html-editable-table th {
+    position: relative;
+    border: 1px solid #e2e8f0;
+    padding: 8px 12px;
+    min-width: 50px;
+    transition: background 0.1s ease;
+    vertical-align: top;
+}
+
+.html-editable-table td:hover,
+.html-editable-table th:hover {
+    background: #f0f7ff;
+}
+
+.html-editable-table td:focus,
+.html-editable-table th:focus {
+    outline: 2px solid var(--tb-accent, #2563eb);
+    outline-offset: -1px;
+    background: #eff6ff;
+}
+
+/* 单元格选中状态 — 蓝色实线 */
+.html-editable-table td.cell-selected,
+.html-editable-table th.cell-selected {
+    outline: 2px solid var(--tb-accent, #2563eb) !important;
+    outline-offset: -1px !important;
+    background: #eff6ff !important;
+}
+
+/* 单元格多选状态 — 浅蓝色填充 */
+.html-editable-table td.cell-multi-selected,
+.html-editable-table th.cell-multi-selected {
+    outline: 1px solid #93c5fd !important;
+    outline-offset: -1px !important;
+    background: #dbeafe !important;
+}
+
+/* 表头 */
+.html-editable-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: #334155;
+}
+
+.html-editable-table tr:nth-child(even) {
+    background: #fafbfc;
+}
+
+/* ===== 容器选择 ===== */
+.container-selected {
+    outline: 2px solid var(--tb-accent, #2563eb) !important;
+    outline-offset: 2px;
+    position: relative;
+}
+
+.container-selected::before {
+    content: '已选中';
+    position: absolute;
+    top: -18px;
+    left: 0;
+    background: var(--tb-accent, #2563eb);
+    color: #fff;
+    font-size: 10px;
+    padding: 1px 6px;
+    letter-spacing: 0.3px;
+    pointer-events: none;
+    line-height: normal;
+    border-radius: 2px 2px 0 0;
+}
+
+/* 可调整大小的表格 */
+.html-resizable-table {
+    user-select: none;
+}
+
+.html-resizable-table td,
+.html-resizable-table th {
+    user-select: text;
+}
+
+/* ===== 图片 ===== */
+.html-editable-image {
+    cursor: pointer;
+    transition: outline 0.15s ease;
+    max-width: 100%;
+    display: block;
+}
+
+.html-editable-image:hover {
+    outline: 1px dashed #94a3b8;
+    outline-offset: 4px;
+}
+
+.html-editable-image:focus {
+    outline: 2px solid var(--tb-accent, #2563eb);
+    outline-offset: 4px;
+}
+
+/* ===== 形状 ===== */
+.html-shape {
+    cursor: move;
+    transition: outline 0.15s ease;
+    display: inline-block;
+}
+
+.html-shape:hover {
+    outline: 1px dashed #94a3b8;
+    outline-offset: 2px;
+}
+
+.html-shape-rect {
+    border-radius: 2px;
+}
+
+.html-shape-circle {
+    border-radius: 50%;
+}
+
+.html-shape-arrow svg {
+    display: block;
+}
+
+/* ===== Resize 手柄 — 方形，蓝色边框 ===== */
+.html-resize-wrapper {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.html-resize-handle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border: 1.5px solid var(--tb-accent, #2563eb);
+    border-radius: 0;
+    z-index: 10001;
+    pointer-events: auto;
+}
+
+.html-resize-handle:hover {
+    background: var(--tb-accent, #2563eb);
+}
+
+.html-resize-handle.nw { top: -4px; left: -4px; cursor: nw-resize; }
+.html-resize-handle.n  { top: -4px; left: 50%; transform: translateX(-50%); cursor: n-resize; }
+.html-resize-handle.ne { top: -4px; right: -4px; cursor: ne-resize; }
+.html-resize-handle.e  { top: 50%; right: -4px; transform: translateY(-50%); cursor: e-resize; }
+.html-resize-handle.se { bottom: -4px; right: -4px; cursor: se-resize; }
+.html-resize-handle.s  { bottom: -4px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
+.html-resize-handle.sw { bottom: -4px; left: -4px; cursor: sw-resize; }
+.html-resize-handle.w  { top: 50%; left: -4px; transform: translateY(-50%); cursor: w-resize; }
+
+/* ===== 连接线模式 ===== */
+.connector-mode * {
+    cursor: crosshair !important;
+}
+
+.connector-mode .html-editable:hover,
+.connector-mode .html-editable-table:hover,
+.connector-mode .html-editable-image:hover,
+.connector-mode .html-shape:hover {
+    outline: 2px solid var(--tb-accent, #2563eb) !important;
+    outline-offset: 2px;
+}
+
+/* ===== 编辑器覆盖层 ===== */
+.html-editor-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+.html-editor-overlay.active {
+    pointer-events: auto;
+}
+
+/* ===== 提示消息 Toast ===== */
+.html-editor-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 10px 16px;
+    background: #1e293b;
+    color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    font-size: 13px;
+    z-index: 10000;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    line-height: 1.4;
+}
+
+.html-editor-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.html-editor-toast-success {
+    background: #15803d;
+}
+
+.html-editor-toast-error {
+    background: #dc2626;
+}
+
+.html-editor-toast-warning {
+    background: #d97706;
+}
+
+.html-editor-toast-info {
+    background: var(--tb-accent, #2563eb);
+}
+
+/* ===== 清理残留 ===== */
+.html-editor-cleanup .html-editable,
+.html-editor-cleanup .html-editable-table,
+.html-editor-cleanup .html-editable-image {
+    outline: none !important;
+    background: transparent !important;
+}

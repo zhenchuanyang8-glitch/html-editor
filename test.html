@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试文档 - HTML可视化编辑器</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #f5f5f5;
+        }
+        .document {
+            background: white;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; margin-bottom: 20px; }
+        h2 { color: #34495e; margin-top: 30px; margin-bottom: 15px; }
+        h3 { color: #7f8c8d; margin-top: 20px; margin-bottom: 10px; }
+        p { margin-bottom: 15px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table td, table th {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+        }
+        .success { color: #2ecc71; }
+        .warning { color: #f39c12; }
+        .info { color: #3498db; }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>📝 HTML可视化编辑器 - 测试文档</h1>
+
+        <p style="background: #e8f4fd; padding: 15px; border-radius: 6px; border-left: 4px solid #3498db;">
+            <b>新功能说明：</b><br>
+            • <b>容器操作：</b>点击任意元素可选中，支持复制、粘贴、删除（支持Ctrl+C/V、Delete快捷键）<br>
+            • <b>表格多选：</b>拖动单元格可多选，批量修改背景色<br>
+            • <b>表格调整：</b>拖动单元格边框可调整列宽和行高
+        </p>
+
+        <p>欢迎使用<span class="highlight">HTML可视化编辑器</span>！这是一个测试文档，用于验证编辑器的各项功能。</p>
+
+        <h2>1. 文本编辑测试</h2>
+        <p>这里可以测试<b>加粗</b>、<i>斜体</i>、<u>下划线</u>和<s>删除线</s>等基础格式。</p>
+        <p>支持的颜色：<span class="success">绿色</span>、<span class="warning">橙色</span>、<span class="info">蓝色</span>。</p>
+
+        <h2>2. 表格测试</h2>
+        <p><i>点击表格单元格即可编辑内容，点击单元格后使用工具栏的"单元格背景色"可以修改填充色</i></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>功能</th>
+                    <th>状态</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>文本编辑</td>
+                    <td class="success">✓ 已实现</td>
+                    <td>点击文字即可编辑</td>
+                </tr>
+                <tr>
+                    <td>表格操作</td>
+                    <td class="success">✓ 已实现</td>
+                    <td>支持增删行列、调整大小</td>
+                </tr>
+                <tr>
+                    <td>单元格颜色</td>
+                    <td class="success">✓ 已实现</td>
+                    <td>点击单元格后用工具栏修改背景色</td>
+                </tr>
+                <tr>
+                    <td>形状绘制</td>
+                    <td class="success">✓ 已实现</td>
+                    <td>矩形、圆形、箭头等</td>
+                </tr>
+                <tr>
+                    <td>连接线</td>
+                    <td class="success">✓ 已实现</td>
+                    <td>连接两个元素</td>
+                </tr>
+                <tr>
+                    <td>本地保存</td>
+                    <td class="success">✓ 已实现</td>
+                    <td>使用File System Access API</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2.1. 彩色表格示例</h2>
+        <table>
+            <thead>
+                <tr style="background: #3498db; color: white;">
+                    <th style="background: #3498db; color: white;">项目</th>
+                    <th style="background: #3498db; color: white;">Q1</th>
+                    <th style="background: #3498db; color: white;">Q2</th>
+                    <th style="background: #3498db; color: white;">Q3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="background: #ecf0f1;">收入</td>
+                    <td style="background: #d5f4e6;">100万</td>
+                    <td style="background: #d5f4e6;">120万</td>
+                    <td style="background: #d5f4e6;">150万</td>
+                </tr>
+                <tr>
+                    <td style="background: #ecf0f1;">支出</td>
+                    <td style="background: #fadbd8;">80万</td>
+                    <td style="background: #fadbd8;">90万</td>
+                    <td style="background: #fadbd8;">100万</td>
+                </tr>
+                <tr>
+                    <td style="background: #ecf0f1;">利润</td>
+                    <td style="background: #fff9c4;">20万</td>
+                    <td style="background: #fff9c4;">30万</td>
+                    <td style="background: #fff9c4;">50万</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>3. 容器操作测试</h2>
+        <p><i>点击任意段落或标题可选中，选中后可以复制、删除或粘贴。支持Ctrl+C、Ctrl+V、Delete快捷键</i></p>
+
+        <p class="test-container">这是一个测试段落。点击它可以选中，然后使用工具栏的"复制"按钮或Ctrl+C复制。选中后按Delete键或点击"删除"按钮可以删除。</p>
+
+        <p class="test-container">这是另一个段落。选中后可以点击"粘贴"按钮或按Ctrl+V将之前复制的内容粘贴到这里后面。</p>
+
+        <h2>4. 列表测试</h2>
+        <h3>无序列表</h3>
+        <ul>
+            <li>第一项内容</li>
+            <li>第二项内容</li>
+            <li>第三项内容</li>
+        </ul>
+
+        <h3>有序列表</h3>
+        <ol>
+            <li>步骤一：打开编辑器</li>
+            <li>步骤二：编辑内容</li>
+            <li>步骤三：保存文档</li>
+        </ol>
+
+        <h2>5. 安装说明</h2>
+        <p>1. 在Chrome中打开 <code>chrome://extensions/</code></p>
+        <p>2. 开启"开发者模式"</p>
+        <p>3. 点击"加载已解压的扩展程序"</p>
+        <p>4. 选择扩展文件夹</p>
+
+        <h2>6. 功能快捷键</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>快捷键</th>
+                    <th>功能</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ctrl + C</td>
+                    <td>复制选中的容器</td>
+                </tr>
+                <tr>
+                    <td>Ctrl + V</td>
+                    <td>粘贴容器</td>
+                </tr>
+                <tr>
+                    <td>Delete</td>
+                    <td>删除选中的容器</td>
+                </tr>
+                <tr>
+                    <td>Esc</td>
+                    <td>取消选择</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr style="margin: 30px 0; border: none; border-top: 1px solid #ecf0f1;">
+
+        <p style="text-align: center; color: #95a5a6;">
+            HTML可视化编辑器 v1.0.0 | 仅供测试使用
+        </p>
+    </div>
+</body>
+</html>
